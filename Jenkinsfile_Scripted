@@ -1,0 +1,25 @@
+node {
+    try {
+        stage('Checkout') {
+            git 'https://github.com/muthuramanathanm/jenkins-cicd.git'
+        }
+
+        stage('Install dependencies') {
+            sh '/usr/local/bin/pip install -r requirements.txt'
+        }
+
+        stage('Run tests') {
+            sh 'python3 -m unittest discover -s tests -p "*_test.py"'
+        }
+
+        stage('Deploy') {
+            sh 'python3 HelloWorld.py'
+        }
+
+        echo 'Deployment successful!'
+    } catch (Exception e) {
+        currentBuild.result = 'FAILURE'
+        echo 'Deployment failed!'
+    }
+}
+
