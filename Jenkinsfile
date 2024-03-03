@@ -36,16 +36,10 @@ pipeline {
         success {
             // Notify on successful deployment
             echo 'Deployment successful!'
-            emailext subject: 'Pipeline Status - Success',
-                      body: 'Your pipeline has been successfully deployed.',
-                      to: 'muthuramanathan.manickam@gmail.com'
         }
         failure {
             // Notify on deployment failure
             echo 'Deployment failed!'
-            emailext subject: 'Pipeline Status - Failure',
-                      body: 'Your pipeline has failed to deploy.',
-                      to: 'muthuramanathan.manickam@gmail.com'
         }
     }
 
